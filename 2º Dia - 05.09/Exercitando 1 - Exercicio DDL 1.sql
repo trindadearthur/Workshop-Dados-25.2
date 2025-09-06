@@ -1,0 +1,16 @@
+CREATE DATABASE workshop;
+
+USE workshop;
+
+CREATE TABLE aluno (
+rgm INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100),
+cpf CHAR(11) NOT NULL UNIQUE,
+email DATE
+);
+
+ALTER TABLE aluno MODIFY email VARCHAR(100);
+
+ALTER TABLE aluno ADD COLUMN endereco VARCHAR(100);
+
+
