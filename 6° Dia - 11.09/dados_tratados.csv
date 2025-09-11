@@ -1,0 +1,11 @@
+id,nome,idade,data_inscricao,nota,ativo
+1,Ana,25,2023-05-12 00:00:00,8.5,True
+2,Bruno,1,9,9.0,True
+3,Carla,30,9,1.1,False
+4,Daniel,1,2022-07-15 00:00:00,7.2,True
+5,Érica,27,9,8.0,Sem dados
+6,Francisco,29,9,1.1,False
+7,Gabriela,21,2023-01-05 00:00:00,10.0,True
+8,Henrique,19,9,9.5,False
+9,Ivana,11,2023-03-10 00:00:00,1.1,True
+10,José,1,2022-11-25 00:00:00,6.7,True
