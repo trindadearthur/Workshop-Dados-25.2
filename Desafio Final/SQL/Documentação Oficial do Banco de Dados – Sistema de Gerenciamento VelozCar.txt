@@ -1,0 +1,87 @@
+﻿Documentação Oficial do Banco de Dados – Sistema de Gerenciamento VelozCar
+
+
+
+
+Data: 13 de setembro de 2025
+Para: Diretoria da VelozCar Concessionária de Aluguel de Veículos
+Assunto: Apresentação da Estrutura e Capacidades Analíticas do Novo Banco de Dados
+
+
+
+
+Prezados,
+Este documento detalha a arquitetura do banco de dados desenvolvido para o novo sistema de gerenciamento da VelozCar. O objetivo desta documentação é fornecer uma visão clara e abrangente sobre como as informações são estruturadas, armazenadas e, mais importante, como podem ser utilizadas para gerar relatórios estratégicos que apoiarão as decisões de negócio, reduzirão o tempo gasto em processos manuais e aumentarão a confiabilidade das operações.
+O banco de dados foi projetado para ser o alicerce seguro e eficiente de todas as funcionalidades do sistema, desde o cadastro de um novo cliente até a análise de faturamento mensal.
+Parte 1: DDL (Data Definition Language) – A Planta Baixa do Sistema
+Nesta fase inicial, construímos a fundação do sistema. Pense nisso como a planta baixa de uma nova filial: definimos onde cada sala (tabela) ficará, o que será armazenado em cada uma e como elas se conectarão.
+
+
+1. Criação do Banco de Dados (CREATE DATABASE)
+   * O que foi feito: Criamos um espaço digital seguro e exclusivo chamado Concessionaria VelozCar. Este é o contêiner principal que abriga todas as informações do sistema.
+
+   2. Criação das Tabelas (CREATE TABLE)
+   * O que foi feito: Dentro do banco de dados, projetamos seis "arquivos" principais, ou tabelas, cada uma especializada em armazenar um tipo de informação:
+   * Clientes: O arquivo central para todas as informações dos seus clientes.
+   * Veiculos: O catálogo completo da sua frota.
+   * Funcionarios: O registro de todos os colaboradores que interagem com o sistema.
+   * Alugueis: O coração do sistema, onde cada contrato de locação é registrado.
+   * Pagamentos: O controle financeiro, registrando cada transação vinculada a um aluguel.
+   * Manutencoes: O histórico de cuidados de cada veículo, essencial para a gestão da frota.
+
+      3. Definição de Colunas e Tipos de Dados
+      * O que foi feito: Para cada tabela, definimos quais informações seriam coletadas (as colunas) e garantimos que o sistema as entenda corretamente. Por exemplo:
+      * VARCHAR: Para textos, como nomes e endereços.
+      * INT: Para números inteiros, como os códigos de identificação.
+      * DECIMAL: Para valores financeiros, garantindo a precisão em cálculos de preços e custos.
+      * DATE: Para datas, permitindo a organização cronológica de aluguéis e cadastros.
+      4. Aplicação de Restrições (Constraints) – As Regras de Negócio
+      * O que foi feito: Implementamos um conjunto de regras para garantir a integridade e a confiabilidade dos dados inseridos, evitando erros comuns.
+      * PRIMARY KEY (Chave Primária): É como o número de chassi de um carro ou o CPF de uma pessoa. É um código identificador único (ex: id_cliente) que garante que cada cliente, veículo ou aluguel seja um registro exclusivo, impossibilitando duplicatas.
+      * UNIQUE (Único): Uma regra extra de exclusividade. Garantimos que não seja possível cadastrar dois clientes com o mesmo CPF ou e-mail, por exemplo.
+      * NOT NULL (Não Nulo): Define que certas informações são obrigatórias. Por exemplo, um cliente não pode ser cadastrado sem um nome.
+      * FOREIGN KEY (Chave Estrangeira): Esta é a que conecta as tabelas de forma inteligente. Ela garante, por exemplo, que um aluguel só possa ser registrado para um id_cliente que realmente existe na tabela Clientes. Isso impede a criação de registros "órfãos" e inconsistentes.
+Parte 2: DML (Data Manipulation Language) – Alimentando o Sistema com Informações
+Com a estrutura definida, começamos a inserir os dados que dão vida ao sistema, simulando as operações do dia a dia da VelozCar.
+
+
+      5. Inserção de Dados (INSERT INTO)
+      * O que foi feito: Populamos cada uma das tabelas com um conjunto de 15 registros de exemplo. Este passo foi crucial para simular um ambiente real, permitindo-nos testar as consultas e garantir que a estrutura se comporta como o esperado.
+
+         6. Atualização de Dados (UPDATE)
+         * O que foi feito: Realizamos modificações nos dados existentes para simular eventos de negócio comuns. Por exemplo:
+         * Finalizamos um aluguel que estava ativo.
+         * Confirmamos o recebimento de um pagamento que estava pendente.
+         * Aplicamos um reajuste de preço para uma categoria de veículos.
+         * Promovemos um funcionário, atualizando seu cargo.
+         * A cláusula WHERE foi utilizada em todos os casos para especificar com precisão qual registro deveria ser alterado, garantindo a segurança e a exatidão da operação.
+Parte 3: DQL (Data Query Language) – Transformando Dados em Inteligência de Negócio
+Esta é a etapa final e mais valiosa. Aqui, utilizamos comandos para fazer perguntas ao banco de dados e extrair relatórios e análises que fornecem insights poderosos para a gestão da concessionária.
+
+
+         7. Consultas de Agregação (GROUP BY)
+         * O que foi feito: Criamos consultas que resumem grandes volumes de dados em informações concisas e estratégicas.
+         * Análise de Frota: Um relatório que mostra instantaneamente quantos carros estão disponíveis, alugados ou em manutenção.
+         * Análise de Faturamento: Um resumo do faturamento total da empresa, agrupado por mês e ano, permitindo a visualização de tendências e sazonalidade.
+         * Análise de Custos: Um levantamento do custo total e médio de manutenção por veículo, identificando os ativos que mais demandam investimento.
+
+            8. Consultas com Junção de Tabelas (JOIN)
+            * O que foi feito: Desenvolvemos relatórios complexos que cruzam informações de múltiplas tabelas para fornecer uma visão completa.
+            * Relatório de Aluguéis Ativos: Uma lista detalhada mostrando qual cliente está com qual veículo, as datas do contrato e o funcionário responsável.
+            * Relatório de Inatividade de Clientes: Uma análise que identifica clientes que não alugam um veículo há muito tempo, criando uma oportunidade para campanhas de reativação.
+            * Relatório de Inadimplência: Uma lista clara de todos os pagamentos pendentes, com os dados do cliente para facilitar a cobrança.
+
+               9. Formatação e Personalização dos Relatórios (AS, FORMAT)
+               * O que foi feito: Refinamos a apresentação de todas as consultas. Renomeamos os títulos das colunas para termos claros e em português (ex: nome se tornou Nome do Cliente) e formatamos datas e valores para o padrão brasileiro (ex: 13/09/2025 e R$ 1.500,00). Isso torna os relatórios intuitivos e prontos para serem utilizados pela gestão.
+
+                  10. Relatórios de Histórico Completo (UNION)
+                  * O que foi feito: Construímos duas visões 360º:
+                  * Dossiê do Veículo: Um relatório que consolida, em ordem cronológica, todos os aluguéis e manutenções de um veículo específico, permitindo uma análise completa de sua rentabilidade e histórico.
+                  * Dossiê do Cliente: Um histórico completo de um cliente, detalhando todos os aluguéis já realizados, os veículos de preferência e o status de seus pagamentos, ideal para programas de fidelidade e um atendimento personalizado.
+Conclusão
+A estrutura de banco de dados implementada para a VelozCar não é apenas um repositório de informações, mas uma poderosa ferramenta de gestão. Ela garante a integridade dos dados, automatiza a consolidação de informações e fornece a base para análises que permitirão à diretoria tomar decisões mais rápidas e bem-informadas, alcançando os objetivos de modernização e eficiência delineados no briefing inicial.
+Estamos à disposição para quaisquer esclarecimentos adicionais.
+
+
+Arthur Trindade - 40806278
+Analista de Dados/DBA
